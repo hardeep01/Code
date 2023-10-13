@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Style for buttons and divs */
+       
+       .product-heading{
+         color: #282828;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+       line-height: 29.5px;
+         margin-bottom: 10px;
+         margin-left: 5px;
+       }
+       
+       #btn2, #btn3 {
+        display: none !important;
+    }
+       
+       span#price2 {
+        text-decoration: line-through;
+        font-weight: 400;
+    }
+       
+       #div1 {
+        margin-bottom: 25px;
+    }
+       
+        .button {
+          padding: 10px;
+          margin: 5px;
+          background-color: #3498db;
+          color: white;
+          border: none;
+          cursor: pointer;
+        }
+    
+      .button.selected {
+        border: 3px solid rgba(255, 75, 0, 0.80) !Important;
+        background: #FFE8E8 !Important;
+        color: #000 !Important;
+    }
+    
+        .price {
+          font-size: 18px;
+          font-weight: bold;
+        }
+       
+       
+       #div1, #div2 {
+        display: flex;
+         flex-wrap: wrap;
+    }
+       
+       #btn1 ,#btn2, #btn3 ,#btn4 ,#btn5, #btn6{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        justify-content: center;
+        border: 1px solid #000;
+        color: black;
+        align-items: center;
+        background: white;
+        padding: 20px 15px;
+        border-radius: 5px;
+        color: #000;
+        text-align: center;
+        font-family: Poppins;
+        font-style: normal;
+        line-height: 17px;
+         font-size: 17px;
+        font-weight: 700;
+    }
+       button#buyButton {
+        border-radius: 5px;
+        background: #FF4747;
+        width: 468px;
+        height: 58px;
+        olor: #FFF;
+        font-family: Poppins;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 17px;
+         margin-top: 35px;
+    }
+       
+       
+       @media(max-width:600px){
+       #btn1, #btn2, #btn3, #btn4, #btn5, #btn6 {
+        padding: 13px 10px;
+        font-size: 16px;
+    }
+         #div1 {
+        margin-bottom: 10px;
+    }
+         .product-heading{
+         margin-bottom: 5px;
+         }
+         button#buyButton {
+        width: 284px;
+        margin-top: 25px;
+    }
+       }
+    
+    
+      </style>
+</head>
+<body>
+    <div id="container">
+        <h5 class="product-heading">Choose Van</h5>
+         <div id="div1">
+           <button class="button" id="btn1"><span class="btn-text">Sprinter 08-23</span></button>
+           <button class="button" id="btn2"><span class="btn-text">Transit 15-23</span></button>
+           <button class="button" id="btn3"><span class="btn-text">Promaster 14-23</span></button>
+         </div>
+        <h5 class="product-heading">Select Screen</h5>
+         <div id="div2">
+           <button class="button" id="btn4"><span class="btn-text">Bundle</span></button>
+           <button class="button" id="btn5"><span class="btn-text">Sliding Door</span></button>
+           <button class="button" id="btn6"><span class="btn-text">Rear Door</span></button>
+         </div>
+         <button class="button" id="buyButton">Buy now <span id="price1">$0</span> <span id="price2">$0</span></button>
+       </div>
+
+
+       <script>
+        // Initialize variables to store button selections and prices
+        let selectedBtn1 = null;
+        let selectedBtn2 = null;
+        let price1 = 0;
+        let price2 = 0;
+    
+        // Function to update button style
+        function updateButtonStyle(buttonId, selected) {
+          const button = document.getElementById(buttonId);
+          if (selected) {
+            button.classList.add('selected');
+          } else {
+            button.classList.remove('selected');
+          }
+        }
+    
+        // Button click event handlers
+        function handleButtonClick(btnId) {
+          if (btnId === 'btn1' || btnId === 'btn2' || btnId === 'btn3') {
+            if (selectedBtn1) {
+              updateButtonStyle(selectedBtn1, false);
+            }
+            selectedBtn1 = btnId;
+            updateButtonStyle(selectedBtn1, true);
+          } else {
+            if (selectedBtn2) {
+              updateButtonStyle(selectedBtn2, false);
+            }
+            selectedBtn2 = btnId;
+            updateButtonStyle(selectedBtn2, true);
+          }
+    
+          // Calculate prices based on selected buttons
+          calculatePrices();
+        }
+    
+        // Calculate prices based on selected buttons
+        function calculatePrices() {
+          if (selectedBtn1 && selectedBtn2) {
+            // Calculate prices based on selected buttons
+            if (selectedBtn1 === 'btn1') {
+              if (selectedBtn2 === 'btn4') {
+                price1 = 750;
+                price2 = 850;
+              } else if (selectedBtn2 === 'btn5') {
+                price1 = 425;
+                price2 = 475;
+              } else if (selectedBtn2 === 'btn6') {
+                price1 = 425;
+                price2 = 475;
+              }
+            } else if (selectedBtn1 === 'btn2') {
+              if (selectedBtn2 === 'btn4') {
+                price1 = 360;  // Adjust the price as needed
+                price2 = 405;
+              } else if (selectedBtn2 === 'btn5') {
+                price1 = 370;
+                price2 = 415;
+              } else if (selectedBtn2 === 'btn6') {
+                price1 = 380;
+                price2 = 425;
+              }
+            } else if (selectedBtn1 === 'btn3') {
+              if (selectedBtn2 === 'btn4') {
+                price1 = 440;  // Adjust the price as needed
+                price2 = 585;
+              } else if (selectedBtn2 === 'btn5') {
+                price1 = 450;
+                price2 = 595;
+              } else if (selectedBtn2 === 'btn6') {
+                price1 = 460;
+                price2 = 505;
+              }
+            }
+    
+            // Update the price elements
+            document.getElementById('price1').textContent = '$' + price1;
+            document.getElementById('price2').textContent = '$' + price2;
+          }
+        }
+    
+        // Buy button click event handler
+        document.getElementById('buyButton').addEventListener('click', function () {
+          if (selectedBtn1 && selectedBtn2) {
+            // Redirect to the appropriate URL based on conditions
+            let redirectUrl = '';
+            if (selectedBtn1 === 'btn1') {
+              if (selectedBtn2 === 'btn4') {
+                redirectUrl = 'https://shop.thewanderful.co/cart/41858793046199:1';
+              } else if (selectedBtn2 === 'btn5') {
+                redirectUrl = 'https://shop.thewanderful.co/cart/41858768634039:1';
+              } else if (selectedBtn2 === 'btn6') {
+                redirectUrl = 'https://shop.thewanderful.co/cart/41858793013431:1';
+              }
+            } else if (selectedBtn1 === 'btn2') {
+              if (selectedBtn2 === 'btn4') {
+                redirectUrl = 'url4';
+              } else if (selectedBtn2 === 'btn5') {
+                redirectUrl = 'url5';
+              } else if (selectedBtn2 === 'btn6') {
+                redirectUrl = 'url6';
+              }
+            } else if (selectedBtn1 === 'btn3') {
+              if (selectedBtn2 === 'btn4') {
+                redirectUrl = 'url7';
+              } else if (selectedBtn2 === 'btn5') {
+                redirectUrl = 'url8';
+              } else if (selectedBtn2 === 'btn6') {
+                redirectUrl = 'url9';
+              }
+            }
+    
+            // Redirect to the selected URL
+            window.location.href = redirectUrl;
+          } else {
+            alert('Please select the appropriate buttons before purchasing.');
+          }
+        });
+    
+        // Add click event handlers to the buttons
+        document.getElementById('btn1').addEventListener('click', () => handleButtonClick('btn1'));
+        document.getElementById('btn2').addEventListener('click', () => handleButtonClick('btn2'));
+        document.getElementById('btn3').addEventListener('click', () => handleButtonClick('btn3'));
+        document.getElementById('btn4').addEventListener('click', () => handleButtonClick('btn4'));
+        document.getElementById('btn5').addEventListener('click', () => handleButtonClick('btn5'));
+        document.getElementById('btn6').addEventListener('click', () => handleButtonClick('btn6'));
+       
+       
+       // Function to select btn1 and btn4 on window load
+    function selectBtn1AndBtn4OnLoad() {
+      handleButtonClick('btn1');
+      handleButtonClick('btn4');
+    }
+    
+    // Add an event listener to run the function on window load
+    window.addEventListener('load', selectBtn1AndBtn4OnLoad);
+       
+      </script>
+</body>
+</html>
